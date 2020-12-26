@@ -1,4 +1,4 @@
-# color
+# vue-color-detect
 
 ## Project setup
 ```
