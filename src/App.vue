@@ -2,11 +2,22 @@
   <div id="app">
     <router-view />
     <div id="nav">
-      <router-link to="/docs">How to Use</router-link>
+      <router-link to="/docs"
+        ><eva-icon name="github" animation="pulse" fill="#f25f4c"></eva-icon
+      ></router-link>
     </div>
   </div>
 </template>
+<script>
+import { EvaIcon } from 'vue-eva-icons';
 
+export default {
+  name: 'App',
+  components: {
+    [EvaIcon.name]: EvaIcon,
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
