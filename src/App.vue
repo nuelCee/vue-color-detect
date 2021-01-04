@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view @color-change="colorHex" />
     <div id="nav">
-      <router-link to="/docs"
-        ><eva-icon name="github" animation="pulse" fill="#f25f4c"></eva-icon
-      ></router-link>
+      <a href="https://github.com/nuelCee/vue-color-detect"
+        ><eva-icon name="github" animation="pulse" :fill="`#${fill}`"></eva-icon
+      ></a>
     </div>
   </div>
 </template>
@@ -13,8 +13,18 @@ import { EvaIcon } from 'vue-eva-icons';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      fill: 'f25f4c',
+    };
+  },
   components: {
     [EvaIcon.name]: EvaIcon,
+  },
+  methods: {
+    colorHex(value) {
+      this.fill = value;
+    },
   },
 };
 </script>

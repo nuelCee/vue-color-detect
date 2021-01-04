@@ -1,4 +1,4 @@
-# vue-image-meta
+# vue-color-detect
 
 ## Project setup
 ```

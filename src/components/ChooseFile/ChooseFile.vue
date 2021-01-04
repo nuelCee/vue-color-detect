@@ -4,8 +4,12 @@
       <div class="choose__con-action">
         <div class="choose__con-action--browse">
           <label for="image"
-            ><eva-icon name="file" animation="pulse" fill="#f25f4c"></eva-icon>
-            <span> Select File </span>
+            ><eva-icon
+              name="file"
+              animation="pulse"
+              :fill="`#${fill}`"
+            ></eva-icon>
+            <span :style="`color: #${fill}`"> Select File </span>
           </label>
           <input type="file" id="image" @change="preview($event)" />
         </div>
@@ -30,6 +34,7 @@ export default {
   data() {
     return {
       placeholder: '',
+      fill: 'f25f4c',
     };
   },
   mixins: [getAverageColor, getHex],
@@ -49,9 +54,16 @@ export default {
         image.onload = () => {
           const { R, G, B } = this.averageColor(image, 4);
           document.body.style.background = `rgb(${R}, ${G},${B})`;
+          const hex = this.rgbToHex(R, G, B);
+          this.fill = this.invertHex(hex.substring(1));
+          this.colorHex(hex, this.fill);
         };
       };
       reader.readAsDataURL(file);
+    },
+    colorHex(hex, fill) {
+      this.$emit('color', hex);
+      this.$emit('git-color', fill);
     },
   },
 };
